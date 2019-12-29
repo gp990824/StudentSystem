@@ -1,0 +1,86 @@
+本系统使用的是Oracle数据库
+集成开发环境使用的是IDEA 字符编码为UTF-8
+数据库的建表和各个SQL语句如下:
+创建成绩表(id主键约束   stu_id与注册表中的id外键约束 class_id与课程表中的id外键约束 均级联删除)
+其中:当删除注册学生表where id =? 的数据时,该成绩表对应的where stu_id = ?跟着删除 
+当删除课程表where id =? 的数据时,该成绩表对应的where class_id = ?跟着删除 
+注意被约束的子表字段必须为主键约束
+创建管理员表
+CREATE TABLE MANAGER(
+id priamry key,
+name not null,
+password no null
+)
+创建成绩表(最后创建)
+CREATE TABLE grade (
+gid number(4) NOT NULL  PRIMARY KEY,
+stu_id number(4) NOT NULL,
+class_id number(4) NOT NULL,
+grade varchar2(4) DEFAULT NULL,
+constraint FK_register_grade foreign key (stu_id) references register(rid) on  delete cascade,
+constraint FK_class_grade foreign key (class_id) references class(cid) on  delete cascade
+)
+创建课程表
+CREATE TABLE class(
+  cid number(4) NOT NULL PRIMARY KEY,
+  class varchar2(8) NOT NULL,
+  teacher varchar2(8) NOT NULL,
+  score varchar2(4) DEFAULT NULL
+)
+创建学生表
+CREATE TABLE register(
+rid number(4) NOT NULL PRIMARY KEY,
+name varchar2(10) NOT NULL,
+password varchar2(10) NOT NULL,
+sex varchar2(2) default NULL,
+email varchar2(20) default NULL
+)
+三表关联查询
+select g.gid,r.name,c.class,g.grade from 
+grade g left join register r on g.stu_id=r.rid 
+left join class c on g.class_id=c.cid
+三表通过成绩id关联查询
+select * from (select g.gid,r.name,c.class,g.grade from 
+grade g left join register r on g.stu_id=r.rid 
+left join class c on g.class_id=c.cid) where gid=?;
+三表通过学生姓名关联查询
+select * from (select g.gid,r.name,c.class,g.grade from 
+grade g left join register r on g.stu_id=r.rid 
+left join class c on g.class_id=c.cid) where name=?;
+根据课程表中的class和register的name向成绩表插入数据
+先查询学生名对应的id,在查询课程名称对应的id
+然后再成绩表插入数据
+select rid from register where name=?;
+select cid from class where class=?;
+insert into grade values(?,?,?,?);
+
+插入数据
+INSERT INTO register VALUES (3, 'admin', 'admin', '男', '290969298@163.com');
+INSERT INTO register VALUES (4, 'llc', '123456', '男', '22222222222@qq.com');
+INSERT INTO register VALUES (6, '22222', '22222', '男', '223');
+INSERT INTO register VALUES (7, 'la', 'la', '男', 'lksdjf');
+INSERT INTO register VALUES (1,'zs','asd','男','lwoshi@163.com');
+
+INSERT INTO grade VALUES (1, 3, 2, '100');
+INSERT INTO grade VALUES (2, 4, 1, '72.5');
+INSERT INTO grade VALUES (6, 4, 2, '70');
+INSERT INTO grade VALUES (7, 3, 7, '100');
+INSERT INTO grade VALUES (8, 3, 6, '99');
+INSERT INTO grade VALUES (9, 4, 4, '100');
+INSERT INTO grade VALUES (11, 3, 4, '100');
+
+INSERT INTO class VALUES (1, 'JAVA', '陈雪军', '5');
+INSERT INTO class VALUES (2, 'C++', '张三皮', '1');
+INSERT INTO class VALUES (3, '路由技术', '李克伟', '2');
+INSERT INTO class VALUES (4, '交换技术', '张丹丹', '4.5');
+INSERT INTO class VALUES (5, 'orcal', '洗', '5');
+INSERT INTO class VALUES (6, '软件工程', '在行动', '2.5');
+INSERT INTO class VALUES (7, '数据库', '了侧身', '1.5');
+
+
+
+
+
+
+
+
