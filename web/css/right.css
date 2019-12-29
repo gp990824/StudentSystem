@@ -1,0 +1,68 @@
+/**
+标题：系统登录页面CSS样式排版
+作者：陈雪军
+单位：中兴软件技术（南昌）有限公司
+日期：2009-12-1
+更改情况：
+备注说明：
+*/
+*{font-size:12px;}
+ul{margin:0px;padding:0px;list-style-type:none;}
+img{margin-bottom:-3px;}
+body{margin:0px;padding:0px;height:100%;width:100%;background-color:#fff;overflow:hidden;font-size:9pt;text-align:center;}
+.nav{height:100%;overflow-x:hidden;overflow-y:auto;width:100%;margin:0 auto;}
+/*
+**主界面标题信息
+*/
+.main_top{width:99%;margin:0 auto;height:24px;background-color:#3357a7;margin-top:5px;margin-bottom:5px;color:#fff;line-height:24px;overflow:hidden;}
+.main_top_title{float:left;}
+.main_top_title li{background:url("../images/index/main_title.gif") no-repeat 8px 6px;padding-left:30px;}
+.main_top_title_r{float:right;margin-right:8px;cursor:pointer;}
+.main_top_title_r li{padding-left:25px;float:left}
+.main_top_title_r_c{background:url("../images/index/main_c.gif") no-repeat 10px 6px;}
+.main_top_title_r_a{background:url("../images/index/main_add.gif") no-repeat 10px 6px;}
+.main_top_title_r_d{background:url("../images/index/main_del.gif") no-repeat 10px 6px;}
+
+/*
+**主界面搜索信息栏
+*/
+.main_select{width:99%;background-color:#d4e3ff;margin-top:5px;margin-bottom:5px;padding:10px 0;overflow:hidden;}
+.main_select tr td img{cursor:pointer;}
+.text{border:solid 1px #b8c7e3;width:200px;}
+
+/*
+**主界面列表显示标题
+*/
+.main_con_title{width:99%;margin-top:5px;line-height:20px;height:20px;text-align:center;color:#000;}
+.main_con_title td{border:solid 1px #a8c7ce !important;background-color:#d4e3ff;word-break:break-all;overflow:hidden;}
+.main_con_select{width:35px !important;}
+main_con_cor{width:100px !important;}
+main_con_date{width:200px !important;}
+.main_con_operation{width:120px !important;height:20px;text-align:center;}
+.main_con_operation ul li{border:0px !important;margin-left:15px;float:left;cursor:pointer;}
+.main_con_operation ul li img{cursor:pointer;}
+
+/*
+**主界面列表显示内容
+*/
+.main_con{width:99%;line-height:20px;height:20px;text-align:center;color:#344b50;}
+.main_con td{border:solid 1px #a8c7ce;border-top:0px;word-break:break-all;overflow:hidden;}
+.main_con_check{width:25px !important;}
+
+/*
+**主界面首页服务参数内容
+*/
+.main_con1{width:99%;line-height:20px;height:20px;color:#344b50;margin-top:5px;text-align:left;}
+.main_con1 td{border:solid 1px #a8c7ce;padding-left:5px;}
+.main_con_item1{width:15%;}
+.main_con_item2{width:35%;}
+.main_con_item3{width:15%;}
+.main_con_item4{width:35%;}
+/*
+**分页
+*/
+.page{width:99%;clear:left;text-align:left;color:#295568;margin-top:10px;overflow:hidden;}
+.page td span{font-weight:bold;}
+.pagenav td{margin-left:3px;color:#295568;}
+.pagenav td img{cursor:pointer;}
+.tz{width:35px;border:solid 1px #7aaebd;height:15px;}

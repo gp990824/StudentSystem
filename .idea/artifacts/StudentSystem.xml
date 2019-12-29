@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="StudentSystem">
+    <output-path>$PROJECT_DIR$/out/artifacts/StudentSystem</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="StudentSystem/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="StudentSystem" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/ojdbc6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-pool-1.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/commons-dbcp-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/jstl.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/lib/standard.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
