@@ -1,7 +1,8 @@
 package com.gp.servlet;
 
-import com.gp.bean.GradeBean;
-import com.gp.manager.UserManager;
+import com.gp.bean.StudentBean;
+import com.gp.manager.StudentService;
+import com.gp.manager.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,26 +13,28 @@ import java.io.IOException;
 
 /**
  * @author gp
- * @create 2019/12/23 14:28
+ * @create 2019/12/22 15:24
  */
-@WebServlet("/ModifyGradeServlet")
-public class ModifyGradeServlet extends HttpServlet {
+@WebServlet("/QueryStudentByIdServlet")
+public class QueryStudentByIdServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        String stu_name = request.getParameter("stu_name");
-        String classname = request.getParameter("classname");
-        String score = request.getParameter("score");
-        GradeBean gradeBean = new GradeBean(id, stu_name, classname, score);
-        UserManager userManager = UserManager.getInstance();
-        boolean flag = userManager.updateGrade(gradeBean);
-        if(flag){
-            request.getRequestDispatcher("/StudentGradeManageServlet").forward(request,response);
+
+        StudentService instance = StudentService.getInstance();
+        StudentBean student = instance.queryStudentById(id);
+        if (student != null) {
+            request.setAttribute("user", student);
+            request.getRequestDispatcher("/WEB-INF/jsp/updateStudentInfo.jsp").forward(request, response);
         }
+
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         doPost(request, response);
     }
 }

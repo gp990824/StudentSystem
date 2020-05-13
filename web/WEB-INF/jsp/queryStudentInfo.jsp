@@ -1,10 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
-  Created by IntelliJ IDEA.
-  User: baba
-  Date: 2019/12/22
-  Time: 16:38
-  To change this template use File | Settings | File Templates.
+    @author gp
+    @create 2020/5/13 9:15
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 <%
@@ -21,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="<%=path %>/css/base.css"/>
     <title></title>
     <script language="javascript">
-        function add() {
+        function check4() {
             var f = document.formAdd;
 
             if (f.name.value == "") {
@@ -57,19 +56,18 @@
     </script>
     <style type="text/css">
         body {
-            background: url(WEB-INF/jsp/images/bg.gif);
+            background: url(images/bg.gif);
         }
     </style>
 </head>
 <body leftmargin="2" topmargin="9" background='<%=path %>/images/allbg.gif'>
-<form action="AddStudentServlet" name="formAdd" method="post">
+<form action="<%=path %>/UpdateStudentInfoServlet" name="formAdd" method="post">
     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC"
            style="margin-bottom:8px">
         <tr bgcolor="#EEF4EA">
-            <td colspan="3" background="<%=path %>/images/wbg.gif" class='title' align='center'><span>学生信息添加</span></td>
+            <td colspan="3" background="<%=path %>/images/wbg.gif" class='title' align='center'><span>学生信息修改</span></td>
         </tr>
-        <input type="hidden" name="id" size="20"/>
-
+        <input type="hidden" name="id" size="20" value="${student.id}"/>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';"
             onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
 
@@ -77,7 +75,7 @@
                 用户名：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="text" name="name" size="20"/>
+                <input type="text" name="name" size="20" value="${student.name}"/>
             </td>
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';"
@@ -86,7 +84,7 @@
                 密码：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="password" name="password" id="userPw" size="22"/>
+                <input type="password" name="password" id="userPw" size="22" value="${student.password}"/>
             </td>
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';"
@@ -95,9 +93,15 @@
                 性别：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <select name="sex" id="userSex" >
-                    <option>男</option>
-                    <option>女</option>
+                <select name="sex" id="userSex">
+                    <c:if test="${user.sex eq '男'}">
+                        <option>男</option>
+                        <option>女</option>
+                    </c:if>
+                    <c:if test="${user.sex eq '女'}">
+                        <option>女</option>
+                        <option>男</option>
+                    </c:if>
                 </select>
             </td>
         </tr>
@@ -107,7 +111,7 @@
                 电子邮箱：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="text" name="email" id="userEm" size="22"/>
+                <input type="text" name="email" id="userEm" size="22" value="${student.email}"/>
             </td>
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';"
@@ -116,7 +120,7 @@
                 &nbsp;
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="button" value="添加" onClick="add()"/>&nbsp;
+                <input type="button" value="修改" onClick="check4()"/>&nbsp;
                 <input type="reset" value="重置"/>&nbsp;
             </td>
         </tr>
@@ -124,3 +128,4 @@
 </form>
 </body>
 </html>
+

@@ -1,7 +1,7 @@
 package com.gp.servlet;
 
 import com.gp.bean.StudentBean;
-import com.gp.manager.UserManager;
+import com.gp.manager.StudentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,15 +17,20 @@ import java.util.List;
  */
 @WebServlet("/StudentInfoManageServlet")
 public class StudentInfoManageServlet extends HttpServlet {
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("utf-8");
-        UserManager userMassage = UserManager.getInstance();
-        List<StudentBean> students = userMassage.queryAllStudents();
-        request.setAttribute("list",students);
-        request.getRequestDispatcher("/WEB-INF/jsp/studentInfo.jsp").forward(request, response);
+        StudentService instance = StudentService.getInstance();
+        List<StudentBean> students = instance.queryAllStudents();
+        if (students != null) {
+            request.setAttribute("list",students);
+            request.getRequestDispatcher("/WEB-INF/jsp/studentInfo.jsp").forward(request, response);
+        }
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request,response);

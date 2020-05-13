@@ -1,24 +1,28 @@
 package com.gp.bean;
 
-import java.util.SplittableRandom;
-
 /**
  * @author gp
  * @create 2019/12/22 20:29
  */
 public class GradeBean {
     private int id;
-    private String stu_id;
-    private String c_id;
+    private int studentId;
+    private int classId;
     private String score;
 
     public GradeBean() {
     }
 
-    public GradeBean(int id, String stu_id, String c_id, String score) {
+    public GradeBean(int studentId, int classId, String score) {
+        this.studentId = studentId;
+        this.classId = classId;
+        this.score = score;
+    }
+
+    public GradeBean(int id, int studentId, int classId, String score) {
         this.id = id;
-        this.stu_id = stu_id;
-        this.c_id = c_id;
+        this.studentId = studentId;
+        this.classId = classId;
         this.score = score;
     }
 
@@ -30,20 +34,20 @@ public class GradeBean {
         this.id = id;
     }
 
-    public String getStu_id() {
-        return stu_id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStu_id(String stu_id) {
-        this.stu_id = stu_id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
-    public String getC_id() {
-        return c_id;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public String getScore() {

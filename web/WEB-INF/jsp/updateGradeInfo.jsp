@@ -38,19 +38,19 @@
     </style>
 </head>
 <body leftmargin="2" topmargin="9" background='<%=path %>/images/allbg.gif'>
-<form action="<%=path %>/ModifyGradeServlet" name="gradeform" method="post" >
+<form action="<%=path %>/UpdateGradeScoreByIdServlet" name="gradeform" method="post" >
     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC" style="margin-bottom:8px">
         <tr bgcolor="#EEF4EA">
             <td colspan="3" background="<%=path %>/images/wbg.gif" class='title' align='center'><span>学生成绩修改</span></td>
         </tr>
-        <input type="hidden" name="id" size="20" value="${user.id}" readonly="readonly"/>
+        <input type="hidden" name="id" size="20" value="${grade.id}" readonly="readonly"/>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
 
             <td width="25%" bgcolor="#FFFFFF" align="right">
                 学生姓名：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="text" name="stu_name" size="20" value="${user.stu_id}" readonly="readonly"/>
+                <input type="text" name="studentName" size="20" value="${grade.studentName}" readonly="readonly"/>
             </td>
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -58,7 +58,7 @@
                 课程名称：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="text" name="classname" id="userPw" size="22"  value="${user.c_id}" readonly="readonly"/>
+                <input type="text" name="className" id="userPw" size="22"  value="${grade.className}" readonly="readonly"/>
             </td>
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -66,7 +66,7 @@
                 分数：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="text" name="score" id="userSex" size="22" value="${user.score}"/>
+                <input type="text" name="score" id="userSex" size="22" value="${grade.score}"/>
             </td>
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">

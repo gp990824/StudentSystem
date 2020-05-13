@@ -1,7 +1,7 @@
 package com.gp.servlet;
 
-import com.gp.bean.StudentBean;
-import com.gp.manager.UserManager;
+import com.gp.manager.StudentService;
+import com.gp.manager.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,22 +12,25 @@ import java.io.IOException;
 
 /**
  * @author gp
- * @create 2019/12/22 15:24
+ * @create 2019/12/22 15:51
  */
-@WebServlet("/UpdateStudentServlet")
-public class UpdateStudentServlet extends HttpServlet {
+@WebServlet("/DeleteStudentByIdServlet")
+public class DeleteStudentByIdServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setCharacterEncoding("utf-8");
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("studentId"));
 
-        UserManager userManager=UserManager.getInstance();
-        StudentBean student = userManager.queryStudentByid(id);
-        request.setAttribute("user",student);
-        request.getRequestDispatcher("/WEB-INF/jsp/update.jsp").forward(request,response);
-
+        StudentService instance = StudentService.getInstance();
+        boolean flag = instance.delStudentById(id);
+        if (flag) {
+            request.getRequestDispatcher("/StudentInfoManageServlet").forward(request,response);
+        }
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request,response);

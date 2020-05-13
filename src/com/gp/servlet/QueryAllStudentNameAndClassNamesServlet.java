@@ -1,9 +1,7 @@
 package com.gp.servlet;
 
-import com.gp.bean.GradeBean;
-import com.gp.bean.GradeViewBean;
-import com.gp.dao.GradeDAO;
 import com.gp.manager.GradeService;
+import com.gp.manager.StudentService;
 import com.gp.manager.UserService;
 
 import javax.servlet.ServletException;
@@ -16,21 +14,25 @@ import java.util.List;
 
 /**
  * @author gp
- * @create 2019/12/22 20:25
+ * @create 2019/12/23 15:20
  */
-@WebServlet("/StudentGradeManageServlet")
-public class StudentGradeManageServlet extends HttpServlet {
+@WebServlet("/QueryAllStudentNameAndClassNamesServlet")
+public class QueryAllStudentNameAndClassNamesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.setCharacterEncoding("utf-8");
-        GradeService instance = GradeService.getInstance();
-        List<GradeViewBean> grades = instance.queryAllStudentGrade();
-        if (grades != null) {
-            request.setAttribute("grade",grades);
-            request.getRequestDispatcher("/WEB-INF/jsp/studentGradeInfo.jsp").forward(request,response);
-        }
 
+        GradeService gradeService = GradeService.getInstance();
+        List<String> classes = gradeService.queryAllClasses();
+        StudentService studentService = StudentService.getInstance();
+        List<String> studentNames = studentService.queryAllStudentName();
+
+
+        if (classes != null && studentNames != null) {
+            request.setAttribute("classes",classes);
+            request.setAttribute("studentNames",studentNames);
+            request.getRequestDispatcher("/WEB-INF/jsp/addGradeInfo.jsp").forward(request,response);
+        }
 
     }
 
@@ -38,6 +40,5 @@ public class StudentGradeManageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request,response);
-
     }
 }

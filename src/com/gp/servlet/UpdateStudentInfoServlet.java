@@ -1,7 +1,8 @@
 package com.gp.servlet;
 
 import com.gp.bean.StudentBean;
-import com.gp.manager.UserManager;
+import com.gp.manager.StudentService;
+import com.gp.manager.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,26 +13,27 @@ import java.io.IOException;
 
 /**
  * @author gp
- * @create 2019/12/22 19:39
+ * @create 2019/12/22 16:42
  */
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/UpdateStudentInfoServlet")
+public class UpdateStudentInfoServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String name = request.getParameter("name");
         String password = request.getParameter("password");
-        String radio = request.getParameter("radio");
+        String sex = request.getParameter("sex");
         String email = request.getParameter("email");
-        StudentBean student = new StudentBean(name,password,radio,email);
-        UserManager userManager = UserManager.getInstance();
-        boolean flag = userManager.addStudent(student);
+        int id = Integer.parseInt(request.getParameter("id"));
+        StudentBean student = new StudentBean(id, name, password, sex, email);
+        StudentService instance = StudentService.getInstance();
+        boolean flag = instance.updateStudentInfo(student);
         if(flag){
-            request.getRequestDispatcher("/index.jsp").forward(request,response);
-        }else{
-            request.getRequestDispatcher("/registererror.jsp").forward(request,response);
+            request.getRequestDispatcher("/StudentInfoManageServlet").forward(request,response);
         }
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request,response);

@@ -7,50 +7,52 @@
 --%>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%String path = request.getContextPath();%>
 <html>
 <head>
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
-    <meta http-equiv="description" content="This is my page" />
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta http-equiv="description" content="This is my page"/>
     <title></title>
     <script language="JavaScript">
 
-        function adminDel(UserId) {
-            if(confirm("您确定要删除吗?")){
-                window.location.href="<%=path%>/UserDelServlet?UserId="+UserId;
+        function adminDel(studentId) {
+            if (confirm("您确定要删除吗?")) {
+                window.location.href = "<%=path%>/DeleteStudentByIdServlet?studentId=" + studentId;
             }
         }
-        function adminAdd(){
-            window.location.href="<%=path%>/addstudent.jsp";
+
+        function adminAdd() {
+            window.location.href = "<%=path%>/addstudent.jsp";
         }
-        function check1(){
-            if( document.getElementById("userName").value==""){
-                alert("请输入用户名对应的id!");
+
+        function check1() {
+            if (document.getElementById("studentName").value == "") {
+                alert("请输入正确的用户名格式!");
                 return false;
             }
             document.formUpdata.submit();
         }
     </script>
     <style type="text/css">
-        body{
-            background:url(images/bg.gif);
+        body {
+            background: url(images/bg.gif);
         }
     </style>
 </head>
-<body leftmargin="2" topmargin="2" >
+<body leftmargin="2" topmargin="2">
 <table>
-    <form action="<%=path %>/UpdateStudentServlet" name="formUpdata" method="post">
-        <tr >
+    <form action="QueryStudentByNameServlet" name="formUpdata" method="post">
+        <tr>
             用户查询
         </tr>
         <tr>
-            <td width="25%" bgcolor="#FFFFFF" align="right">  请输入用户名：</td>
+            <td width="25%" bgcolor="#FFFFFF" align="right"> 请输入用户名：</td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="text" id="userName" name="id" size="20"/>
+                <input type="text" id="studentName" name="studentName" size="20"/>
                 <input type="button" value="查询" onClick="check1()"/>&nbsp;
             </td>
         </tr>
@@ -86,19 +88,18 @@
                     ${s.email}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <a href="#" onclick="adminDel(${s.id})" >删除</a>
-                <a href="<%=path %>/UpdateStudentServlet?id=${s.id}">修改</a>
+                <a href="#" onclick="adminDel(${s.id})">删除</a>
+                <a href="<%=path %>/QueryStudentByIdServlet?id=${s.id}">修改</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 
 
-
-<table width='98%'  border='0'>
+<table width='98%' border='0'>
     <tr>
         <td>
-            <input type="button" value="添加" style="width: 80px;" onclick="adminAdd()" />
+            <input type="button" value="添加" style="width: 80px;" onclick="adminAdd()"/>
         </td>
     </tr>
 </table>

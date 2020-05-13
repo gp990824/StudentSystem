@@ -33,12 +33,12 @@
     </script>
     <style type="text/css">
         body {
-            background: url(images/bg.gif);
+            background: url(../../images/bg.gif);
         }
     </style>
 </head>
 <body leftmargin="2" topmargin="9" background='<%=path %>/images/allbg.gif'>
-<form action="<%=path %>/AddGradeServlet" name="form" method="post">
+<form action="AddGradeServlet" name="form" method="post">
     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC"
            style="margin-bottom:8px">
         <tr bgcolor="#EEF4EA">
@@ -53,7 +53,7 @@
             <td width="75%" bgcolor="#FFFFFF" align="left">
                 <select name="studentName">
                     <option>请选择</option>
-                    <c:forEach items="${studentName}" var="s">
+                    <c:forEach items="${studentNames}" var="s">
                         <option value="${s}">${s}</option>
                     </c:forEach>
                 </select>
@@ -67,7 +67,7 @@
             <td width="75%" bgcolor="#FFFFFF" align="left">
                 <select name="className">
                     <option>请选择</option>
-                    <c:forEach items="${className}" var="c">
+                    <c:forEach items="${classes}" var="c">
                         <option value="${c}">${c}</option>
                     </c:forEach>
                 </select>
